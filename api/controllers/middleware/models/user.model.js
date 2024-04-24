@@ -56,6 +56,12 @@ const User = sequelize.define(
 				unique: true,
 				allowNull: false,
 				fields: ['email']
+			},
+
+            {
+				unique: true,
+				allowNull: false,
+				fields: ['telephone']
 			}
 		]
 	},
