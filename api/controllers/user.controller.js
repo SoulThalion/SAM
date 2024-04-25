@@ -101,7 +101,7 @@ const getMyUser = async (req, res) => {
 
 
 const createUser = async (req, res) => {
-	try {console.log(req)
+	try {
 
 		const saltRounds = bcrypt.genSaltSync(parseInt(10))
 		const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
