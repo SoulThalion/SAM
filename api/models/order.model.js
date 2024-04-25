@@ -22,6 +22,12 @@ const Order = sequelize.define(
 		  finish: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
+		  },
+		  play: {
+			type: DataTypes.DATE
+		  },
+		  pause: {
+			type: DataTypes.DATE
 		  }
     },
 	{	
