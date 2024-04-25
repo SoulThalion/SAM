@@ -59,4 +59,3 @@ DELETE | /order/:orderId  | YES   | admin/manager| Delete one order|  `params: o
 </details>
 =======
 </details>
->>>>>>> 88997f33db96f9c52dac33a140aa34792b2a9f3d
