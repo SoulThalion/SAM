@@ -36,7 +36,6 @@ POST   | /ship            | YES   | admin/manager  | Post new Ship  |  `brand`, 
 PATCH  | /ship/:shipId   | YES   | admin/manager | Update a Ship    |  `brand`, `model`, `registration_number`      | { message: 'Update Ship successfully', data: `ship`}
 DELETE | /ship/:shipId    | YES   | admin/manager | Delete a Ship   |                                              | { message: 'Ship deleted successfully', data: [`ship`]}
 </details>
-<details>
 <details> <summary><b>Client Endpoints</b></summary>
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                                                 | RETURNS
