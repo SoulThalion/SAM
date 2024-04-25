@@ -57,5 +57,3 @@ PATCH  | /order/:orderId  | YES   | user| Update one order          | `name`, `s
 DELETE | /order/:orderId  | YES   | admin/manager| Delete one order|  `params: orderId`                                                           | { message: 'Order deleted successfully', data: [`order`]}
 <<<<<<< HEAD
 </details>
-=======
-</details>
