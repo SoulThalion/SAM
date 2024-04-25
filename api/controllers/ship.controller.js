@@ -1,4 +1,3 @@
-const Order = require('../models/order.model')
 const Ship = require('../models/ship.model')
 
 const bcrypt = require('bcrypt')
@@ -20,7 +19,7 @@ async function getAllShips(req, res) {
 
 async function getOneShip(req, res) {
 	try {
-		const ship = await Order.findByPk(req.params.id)
+		const ship = await Ship.findByPk(req.params.id)
 		if (ship) {
 			return res.status(200).json(ship)
 		} else {

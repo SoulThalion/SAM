@@ -1,6 +1,4 @@
 const User = require('../models/user.model')
-const Ship = require('../models/ship.model')
-const { Op } = require('sequelize');
 
 const bcrypt = require('bcrypt')
 
