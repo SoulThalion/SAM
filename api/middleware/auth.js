@@ -26,4 +26,11 @@ const isAdmin = (req, res, next) => {
   next();
 };
 
-module.exports = { checkAuth, isAdmin };
+const isManager = (req, res, next) => {
+  if (res.locals.user.role !== 'manager' || res.locals.user.role !== 'admin') {
+    return res.status(403).send('>> Unauthorized.');
+  }
+  next();
+};
+
+module.exports = { checkAuth, isAdmin, isManager };
