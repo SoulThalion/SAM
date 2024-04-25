@@ -1,20 +1,15 @@
 const router = require('express').Router()
 
-/*const { getAllUsers, getOneUser, createUser, updateUser, deleteUser, getMyUser, createFavorite, getAllFavorites, deleteFavorite } = require('../controllers/user.controller')
-const { checkAuth, isAdmin } = require('../middleware/auth');
+const { getAllOrders, getOneOrder, createOrder, updateOrder, deleteOrder} = require('../controllers/order.controller')
+const { checkAuth, isAdmin, isManager } = require('../middleware/auth');
 
-router.get('/profile', checkAuth, getMyUser)
-router.get('/favorite', checkAuth, getAllFavorites)
-router.get('/:id', checkAuth, getOneUser)
-router.get('/', checkAuth, getAllUsers)
+router.get('/:id', checkAuth, isManager, getOneOrder)
+router.get('/', checkAuth, isManager, getAllOrders)
 
-router.post('/favorite/:gameId', checkAuth, createFavorite);
-router.post('/', checkAuth, isAdmin, createUser)
+router.post('/', checkAuth, isManager, createOrder)
 
-router.patch('/:id', checkAuth, isAdmin, updateUser)
+router.patch('/:id', checkAuth, isManager, updateOrder)
 
-router.delete('/favorite/:gameId', checkAuth, deleteFavorite)
-router.delete('/:id', checkAuth, isAdmin, deleteUser)*/
-
+router.delete('/:id', checkAuth, isManager, deleteOrder)
 
 module.exports = router
