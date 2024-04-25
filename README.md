@@ -1,9 +1,7 @@
 # SAM
 
 
-### Authentication Endpoints
 
-The Authentication flow for the application is:
 <details>
 <summary><b> User Login</b></summary>
 
