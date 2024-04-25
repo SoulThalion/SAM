@@ -55,4 +55,8 @@ GET    | /order/myOrders  | YES   | user | Get All My Orders        |           
 POST   | /order           | YES   | admin/manager| Create one order | `appointment`, `work`, `observations`, `hours`                              | { message: 'Order created successfully', data: [`order`]}
 PATCH  | /order/:orderId  | YES   | user| Update one order          | `name`, `surname`, `address`, `cif`, `telephone`, `email`                   | { message: 'Order updated successfully', data: [`order`]}
 DELETE | /order/:orderId  | YES   | admin/manager| Delete one order|  `params: orderId`                                                           | { message: 'Order deleted successfully', data: [`order`]}
+<<<<<<< HEAD
 </details>
+=======
+</details>
+>>>>>>> 88997f33db96f9c52dac33a140aa34792b2a9f3d
