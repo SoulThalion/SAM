@@ -9,7 +9,7 @@ const checkAuth = (req, res, next) => {
       if (error) {
         return res.status(403).send('>> Login to continue!');
       }
-      const user = await User.findOne({ where: { email: result.email } });
+      const user = await User.findOne({ where: { userName: result.userName } });
       if (!user) {
         return res.status(403).send('>> Token not valid!');
       }
@@ -27,7 +27,7 @@ const isAdmin = (req, res, next) => {
 };
 
 const isManager = (req, res, next) => {
-  if (res.locals.user.role !== 'manager' || res.locals.user.role !== 'admin') {
+  if (res.locals.user.role !== 'manager' && res.locals.user.role !== 'admin') {
     return res.status(403).send('>> Unauthorized.');
   }
   next();
