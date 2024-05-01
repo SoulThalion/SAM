@@ -1,8 +1,9 @@
 const router = require('express').Router()
 
-const { getAllShips, getOneShip, createShip, updateShip, deleteShip} = require('../controllers/ship.controller')
+const { getAllShips, getOneShip, createShip, updateShip, deleteShip, getShipsByClientId} = require('../controllers/ship.controller')
 const { checkAuth, isAdmin, isManager } = require('../middleware/auth');
 
+router.get('/own/:id', checkAuth, getShipsByClientId)
 router.get('/:id', checkAuth, getOneShip)
 router.get('/', checkAuth, getAllShips)
 

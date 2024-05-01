@@ -1,4 +1,5 @@
 const Ship = require('../models/ship.model')
+const Client = require('../models/client.model')
 
 const bcrypt = require('bcrypt')
 
@@ -29,6 +30,25 @@ async function getOneShip(req, res) {
 		res.status(500).send(error.message)
 	}
 }
+
+async function getShipsByClientId(req, res) {
+    try {
+        // Buscar todos los barcos asociados al cliente por su ID de cliente
+        const ships = await Ship.findAll({ where: { clientId: req.params.id } });
+
+        if (ships.length > 0) {
+            // Si se encontraron barcos asociados al cliente, devolverlos
+            return res.status(200).json(ships);
+        } else {
+            // Si no se encontraron barcos asociados al cliente, devolver un mensaje de error
+            return res.status(404).send('No ships found for this client');
+        }
+    } catch (error) {
+        // Manejar errores internos del servidor
+        res.status(500).send(error.message);
+    }
+}
+
 
 async function createShip(req, res) {
 	try {
@@ -80,5 +100,6 @@ module.exports = {
 	getOneShip,
 	createShip,
 	updateShip,
-	deleteShip
+	deleteShip,
+	getShipsByClientId
 }

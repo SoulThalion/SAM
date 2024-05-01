@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 
 
 async function getAllClients(req, res) {
-	
 	try {
 		const clients = await Client.findAll()
 		if (clients) {
@@ -32,7 +31,7 @@ async function getOneClient(req, res) {
 
 async function createClient(req, res) {
 	try {
-		const client = await client.create(req.body)
+		const client = await Client.create(req.body)
 		return res.status(200).json({ message: 'Client created', client: client })
 	} catch (error) {
 		res.status(500).send(error.message)
@@ -40,6 +39,7 @@ async function createClient(req, res) {
 }
 
 async function updateClient(req, res) {
+	console.log(req.body)
 	try {
 		const [clientExist, client] = await Client.update(req.body, {
 			returning: true,
