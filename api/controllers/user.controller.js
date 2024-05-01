@@ -117,7 +117,7 @@ const createUser = async (req, res) => {
 			role: req.body.role
 		})
 
-		
+
 
 		res.status(200).json(newUser)
 	} catch (error) {
@@ -128,11 +128,19 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
 	try {
+		if (req.body.password) {
+			const saltRounds = bcrypt.genSaltSync(parseInt(10))
+			const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
+			req.body.password = hashedPassword
+		}
+
+
 		const [user] = await User.update(req.body, {
 			where: {
 				id: req.params.id
 			}
 		})
+
 		if (!user) {
 			return res.status(404).send('User not found')
 		}
