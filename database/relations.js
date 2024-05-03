@@ -16,6 +16,9 @@ function addRelationsToModels() {
 		Order.belongsTo(Ship);
 		Ship.hasOne(Order);
 
+		Order.belongsTo(Client);
+		Client.hasOne(Order);
+
 		console.log('Relations added to all models');
 	} catch (error) {
 		throw error
