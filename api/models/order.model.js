@@ -5,7 +5,8 @@ const Order = sequelize.define(
 	'order',
 	{
 		appointment: {
-			type: DataTypes.DATE
+			type: DataTypes.DATE,
+			defaultValue: null
 		  },
 		  work: {
 			type: DataTypes.STRING,

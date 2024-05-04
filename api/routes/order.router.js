@@ -5,7 +5,7 @@ const { checkAuth, isManager } = require('../middleware/auth');
 
 router.get('/myOrders', checkAuth, getAllMyOrders)
 router.get('/:id', checkAuth, isManager, getOneOrder)
-router.get('/', checkAuth, isManager, getAllOrders)
+router.get('/', checkAuth, getAllOrders)
 
 router.post('/', checkAuth, isManager, createOrder)
 
