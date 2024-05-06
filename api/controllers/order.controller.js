@@ -1,5 +1,6 @@
 const Order = require('../models/order.model')
 const User = require('../models/user.model')
+const { Sequelize } = require('sequelize')
 
 const bcrypt = require('bcrypt')
 
@@ -11,9 +12,28 @@ async function getAllOrders(req, res) {
         let orders;
 
         if (role === 'admin' || role === 'manager') {
-            orders = await Order.findAll();
+            orders = await Order.findAll({
+                order: [
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 1, 4) AS UNSIGNED)`), 'ASC'], // Ordenar por año
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 6, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por mes
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 9, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por día
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 12, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por hora
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 15, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por minuto
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 18, 2) AS UNSIGNED)`), 'ASC'] // Ordenar por segundo
+                ]
+            });
         } else if (role === 'mechanic') {
-            orders = await Order.findAll({ where: { userId: id } });
+            orders = await Order.findAll({
+                where: { userId: id },
+                order: [
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 1, 4) AS UNSIGNED)`), 'ASC'], // Ordenar por año
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 6, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por mes
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 9, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por día
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 12, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por hora
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 15, 2) AS UNSIGNED)`), 'ASC'], // Ordenar por minuto
+                    [Sequelize.literal(`CAST(SUBSTRING(appointment, 18, 2) AS UNSIGNED)`), 'ASC'] // Ordenar por segundo
+                ]
+            });
         }
 
         if (orders && orders.length > 0) {
@@ -25,6 +45,8 @@ async function getAllOrders(req, res) {
         res.status(500).send(error.message);
     }
 }
+
+
 
 
 async function getOneOrder(req, res) {
