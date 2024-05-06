@@ -39,7 +39,7 @@ const signUp = async (req, res) => {
 
 
 const logIn = async (req, res) => {
-  try { 
+  try {
     const { userName, password } = req.body;
 
     const user = await User.findOne({ where: { userName } });
@@ -53,7 +53,10 @@ const logIn = async (req, res) => {
             { expiresIn: '1y' }
           );
 
-          return res.status(200).json({ token });
+          const userJSON = user.toJSON()
+          delete userJSON.password
+
+          return res.status(200).json({ token, user: userJSON });
         }
         return res
           .status(404)
