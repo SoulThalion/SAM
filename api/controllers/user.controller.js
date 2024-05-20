@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 
 
 const getAllUsers = async (req, res) => {
-	console.log(res.locals.user.role)
 	if (res.locals.user.role === "admin") {
 		try {
 			const users = await User.findAll({
